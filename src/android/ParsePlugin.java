@@ -67,7 +67,9 @@ public class ParsePlugin extends CordovaPlugin {
     private void getInstallationId(final CallbackContext callbackContext) {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
+                ParseInstallation.getCurrentInstallation().saveInBackground();
                 String installationId = ParseInstallation.getCurrentInstallation().getInstallationId();
+                PushService.setDefaultPushCallback(cordova.getActivity(),cordova.getActivity().getClass());
                 callbackContext.success(installationId);
             }
         });
