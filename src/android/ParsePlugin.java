@@ -58,7 +58,7 @@ public class ParsePlugin extends CordovaPlugin {
                     Parse.initialize(cordova.getActivity(), appId, clientKey);
                     callbackContext.success();
                 } catch (JSONException e) {
-                    callbackContext.error("JSONException");
+                    callbackContext.error(e.toString());
                 }
             }
         });
