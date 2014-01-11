@@ -21,6 +21,9 @@
     [self.commandDelegate runInBackground:^{
         CDVPluginResult* pluginResult = nil;
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        [currentInstallation setDeviceTokenFromData:newDeviceToken];
+        [currentInstallation saveInBackground];
+
         NSString *installationId = currentInstallation.installationId;
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:installationId];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
